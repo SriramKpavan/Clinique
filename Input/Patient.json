@@ -1,0 +1,39 @@
+{"Patients":[
+{
+"name" : "Anshul",
+"id" : "uw922tg2",
+"age" : "23",
+"contact" : "9242676327"
+},
+{
+"name" : "Shravan",
+"id" : "2uyet227",
+"age" : "6",
+"contact" : "9256352763"
+},
+{
+"name" : "Dheeraj",
+"id" : "qu223n4",
+"age" : "45",
+"contact" : "72647287244"
+},
+{
+"name" : "Atul",
+"id" : "wud8382294n",
+"age" : "27",
+"contact" : "9246273624"
+},
+{
+"name" : "Tanuja",
+"id" : "u249ug874",
+"age" : "70",
+"contact" : "9724627632"
+},
+{
+"name" : "Vamshi",
+"id" : "2gdue293",
+"age" : "52",
+"contact" : "8246782622"
+}
+]
+}

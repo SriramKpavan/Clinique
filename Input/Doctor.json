@@ -1,0 +1,14 @@
+{"Doctors":[
+{
+"name" : "Guru",
+"id" : "328392hd",
+"specialisation" : "Neurology",
+"availability" : "PM"
+},
+{
+"name" : "Pooja",
+"id" : "273662ws",
+"specialisation" : "Pediatrician",
+"availability" : "Both"
+}
+]}
