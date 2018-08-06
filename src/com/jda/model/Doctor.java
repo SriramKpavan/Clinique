@@ -9,6 +9,8 @@ public class Doctor {
 	public String id;
 	public String specialisation;
 	public String availability;
+	public int appointments;
+
 	JSONObject jo;
 	Doctor doctor;
 	
@@ -58,5 +60,19 @@ public class Doctor {
 	
 	public void setAvailability(String availability) {
 		this.availability = availability;
+	}
+	
+	public int getAppointments() {
+		return appointments;
+	}
+
+	public void setAppointments(int appointments) {
+		this.appointments = appointments;
+	}
+	
+	public String toString() {
+		String x = "\n{\n" + "name :" + name + "\n"+ "id :" + id + "\n" + "specialisation :" + specialisation +"\n" + "availability :" + availability +"\n" + "appointments :" + Integer.toString(appointments) +"\n" + "}\n";
+		return x;
+		
 	}
 }

@@ -1,14 +1,17 @@
 {"Doctors":[
 {
-"name" : "Guru",
-"id" : "328392hd",
-"specialisation" : "Neurology",
-"availability" : "PM"
-},
+name :Pooja
+id :26u
+specialisation :Pediatrician
+availability :Both
+appointments :0
+}
+,
 {
-"name" : "Pooja",
-"id" : "273662ws",
-"specialisation" : "Pediatrician",
-"availability" : "Both"
+name :Guru
+id :527d
+specialisation :Neurologist
+availability :PM
+appointments :1
 }
 ]}
