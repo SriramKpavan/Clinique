@@ -58,5 +58,10 @@ public class Patient {
 	public void setAge(String age) {
 		this.age = age;
 	}
+	
+	public String toString() {
+		String x = "\n{\n" + "name :".toString() + name.toString() + "\n"+ "id :".toString() + id.toString() + "\n" + "age :".toString() + age.toString() +"\n" + "contact :".toString() + number.toString() + "\n" + "}\n";
+		return x;
+	}
 }
 

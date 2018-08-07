@@ -9,7 +9,7 @@ public class Doctor {
 	public String id;
 	public String specialisation;
 	public String availability;
-	public int appointments;
+	public long appointments;
 
 	JSONObject jo;
 	Doctor doctor;
@@ -18,16 +18,29 @@ public class Doctor {
 		jo = new JSONObject();
 	}
 	   
-	   public void toDoctor(JSONObject obj) {
-		   doctor = new Doctor();
-		   doctor.setName((String) obj.get("name"));
-		   doctor.setId((String) obj.get("id"));
-		   doctor.setAvailability((String) obj.get("availability"));
-		   doctor.setSpecialisation((String) obj.get("specialisation"));
+	public void toJSON(Doctor doctor) {
+		jo.put("name", doctor.getName());
+		jo.put("id", doctor.getId());
+		jo.put("availability", doctor.getAvailability());
+		jo.put("specialisation", doctor.getSpecialisation());
+		jo.put("appointments", doctor.getAppointments());
+	}
+	
+	public JSONObject convertObject() {
+		return jo;
+	}
+	
+	public void toDoctor(JSONObject obj) {
+		doctor = new Doctor();
+		doctor.setName((String) obj.get("name"));
+		doctor.setId((String) obj.get("id"));
+		doctor.setAvailability((String) obj.get("availability"));
+		doctor.setSpecialisation((String) obj.get("specialisation"));
+		doctor.setAppointments((long) obj.get("appointments"));
 	   }
-	  
-	   public Doctor convertJSON() {
-		   return doctor;
+	
+	public Doctor convertJSON() {
+		return doctor;
 	   }
 	   
 	public String getName() {
@@ -62,16 +75,16 @@ public class Doctor {
 		this.availability = availability;
 	}
 	
-	public int getAppointments() {
+	public long getAppointments() {
 		return appointments;
 	}
 
-	public void setAppointments(int appointments) {
+	public void setAppointments(long appointments) {
 		this.appointments = appointments;
 	}
 	
 	public String toString() {
-		String x = "\n{\n" + "name :" + name + "\n"+ "id :" + id + "\n" + "specialisation :" + specialisation +"\n" + "availability :" + availability +"\n" + "appointments :" + Integer.toString(appointments) +"\n" + "}\n";
+		String x = "\n{\n" + "name :" + name + "\n"+ "id :" + id + "\n" + "specialisation :" + specialisation +"\n" + "availability :" + availability +"\n" + "appointments :" + Long.toString(appointments) +"\n" + "}\n";
 		return x;
 		
 	}

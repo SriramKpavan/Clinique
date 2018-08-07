@@ -17,14 +17,17 @@ public class AppointmentSetter {
 			switch(choice) {
 			case 1:
 				app.searchDoctor();
+				break;
 				
 			case 2:
 				app.searchPatient();
+				break;
 				
 			case 3:
 				System.out.println("Please give me your name");
 				String name = utility.takeInputString();
 				app.appointmentTracker(name);
+				break;
 			}
 		}while(choice != 0);
 	}

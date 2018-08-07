@@ -1,6 +1,5 @@
 package com.jda.service;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.PrintWriter;
 import java.time.LocalDate;
@@ -81,7 +80,7 @@ public class Appointments {
 					if(doctorList.get(j).getId().compareToIgnoreCase(id) == 0) {
 						doctor = doctorList.get(j);
 						String avail = doctor.getAvailability();
-						int appointment = doctor.getAppointments();
+						long appointment = doctor.getAppointments();
 						if((avail.equals(time) || avail.equals("Both")) &&  (appointment<6)) {
 							appointment++;
 							doctor = doctorList.remove(j);
@@ -94,7 +93,7 @@ public class Appointments {
 							obj.put("Doctor name", doctor.getName());
 							obj.put("Doctor id", id);
 							obj.put("Time", avail);
-							obj.put("Patient's turn", Integer.toString(appointment));
+							obj.put("Patient's turn", Long.toString(appointment));
 							obj.put("date", LocalDate.now().toString());
 							appointList.add(obj);
 							updateDoctor();
@@ -111,7 +110,7 @@ public class Appointments {
 								obj.put("Doctor name", doctor.getName());
 								obj.put("Doctor id", id);
 								obj.put("Time", avail);
-								obj.put("Patient's turn", Integer.toString(appointment));
+								obj.put("Patient's turn", Long.toString(appointment));
 								obj.put("date", date);
 								appointList.add(obj);
 								saveToFile();	
@@ -140,15 +139,16 @@ public class Appointments {
 		}
 		}
 	
-	public void searchDoctor() {
+	public void searchDoctor() throws Exception {
 		System.out.println("1. Search by name, 2. Search by id, 3. Search by specialisation, 4. Search by availability");
 		int choice = utility.takeInputInteger();
+		doctorList = readDoctorFile();
 		switch(choice) {
 		case 1:
 			System.out.println("Enter name");
 			String input = utility.takeInputString();
 			for(int i=0; i<doctorList.size(); i++) {
-				if(doctorList.get(i).getId().compareToIgnoreCase(input) == 0) {
+				if(doctorList.get(i).getName().compareToIgnoreCase(input) == 0) {
 					System.out.println(doctorList.get(i));
 					return;
 				}
@@ -170,7 +170,7 @@ public class Appointments {
 			System.out.println("Enter specialisation");
 			String input3 = utility.takeInputString();
 			for(int i=0; i<doctorList.size(); i++) {
-				if(doctorList.get(i).getId().compareToIgnoreCase(input3) == 0) {
+				if(doctorList.get(i).getSpecialisation().compareToIgnoreCase(input3) == 0) {
 					System.out.println(doctorList.get(i));
 					return;
 				}		
@@ -181,7 +181,7 @@ public class Appointments {
 			System.out.println("Enter availability");
 			String input4 = utility.takeInputString();
 			for(int i=0; i<doctorList.size(); i++) {
-				if(doctorList.get(i).getId().compareToIgnoreCase(input4) == 0) {
+				if(doctorList.get(i).getAvailability().compareToIgnoreCase(input4) == 0) {
 					System.out.println(doctorList.get(i));
 					return;
 				}	
@@ -236,7 +236,12 @@ public class Appointments {
 	
 	public void updateDoctor() throws Exception {
 		JSONObject jo = new JSONObject();
-		jo.put("Doctors", doctorList);
+		JSONArray ja = new JSONArray();
+		for(int i =0; i<doctorList.size(); i++) {
+			doctor.toJSON(doctorList.get(i));
+			ja.add(doctor.convertObject());
+		}
+		jo.put("Doctors", ja);
 		PrintWriter pw = new PrintWriter("Input//Doctor.json");
 		pw.write(jo.toJSONString());
 		pw.flush();
